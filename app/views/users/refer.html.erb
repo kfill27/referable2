@@ -1,0 +1,13 @@
+<div class="container">
+  <h1>Your Referable Page</h1>
+  <p>Spread the word by sharing this link with your friends!</p>
+  <strong><%= root_url %>?ref=<%= @user.referral_code %></strong>
+
+  <h2>Referral Summary</h2>
+  <% referrals_count = @user.referrals.count %>
+  <% if referrals_count == 0 %>
+  	<p><span>No</span> friends have joined...Yet!</p>
+  <% else %>
+  	<p>Total referrals: <strong><%= referrals_count %></strong> have joined!</p>
+  <% end %>
+</div>

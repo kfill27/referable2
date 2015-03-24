@@ -1,0 +1,9 @@
+<div class="container">
+  <h1>Referable</h1>
+  <%= form_for @user, url: {action: "create"} do |f| %>
+  <%= f.label :email %>
+  <%= f.email_field :email %>
+
+  <%= f.submit "Spread the word!" %>
+  <% end %>
+</div>
