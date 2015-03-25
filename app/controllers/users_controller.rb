@@ -1,4 +1,7 @@
 class UsersController < ApplicationController
+  
+  #only before new action, call skip_to_refer
+  before_action :skip_to_refer, :only => :new
 
   def new
 		@user = User.new
@@ -46,6 +49,15 @@ class UsersController < ApplicationController
 		if @user.nil?
 			redirect_to root_path
 		end
+	end
+
+	def skip_to_refer
+    email = cookies[:h_email]
+    if email and !User.find_by_email(email).nil?
+      redirect_to '/refer-a-friend'
+    else
+      cookies.delete :h_email
+    end 
 	end
 
 	private
