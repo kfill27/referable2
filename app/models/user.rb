@@ -7,6 +7,32 @@ class User < ActiveRecord::Base
 
   before_create :create_referral_code
 
+  REFERRAL_STEPS = [
+    {
+        'count' => 5,
+        "html" => "Coffee<br>Mug",
+        "class" => "two",
+        "image" =>  ActionController::Base.helpers.asset_path("refer/cream-tooltip@2x.png")
+    },
+    {
+        'count' => 10,
+        "html" => "Pizza",
+        "class" => "three",
+        "image" => ActionController::Base.helpers.asset_path("refer/truman@2x.png")
+    },
+    {
+        'count' => 25,
+        "html" => "Lunch with Walter",
+        "class" => "four",
+        "image" => ActionController::Base.helpers.asset_path("refer/winston@2x.png")
+    },
+    {
+        'count' => 50,
+        "html" => "Free<br>Wyncode",
+        "class" => "five",
+        "image" => ActionController::Base.helpers.asset_path("refer/blade-explain@2x.png")
+    }
+  ]
   private
   def create_referral_code
   	#generate random hexadecimal referral code

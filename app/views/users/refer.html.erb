@@ -10,4 +10,29 @@
   <% else %>
   	<p>Total referrals: <strong><%= referrals_count %></strong> have joined!</p>
   <% end %>
+  
+  <%
+    referrals_count = @user.referrals.count
+
+    stops = User::REFERRAL_STEPS
+  
+    found = nil
+
+    next_stop = nil
+
+    stops.reverse_each { |stop|
+        if stop["count"] <= referrals_count and !found
+            stop["selected"] = true
+            found = stop
+            current_index = stops.index(stop)
+             next_stop = stops.at(current_index + 1)
+        else
+            stop["selected"] = false
+            next_stop = stops.at(0)
+        end
+    }
+  %>
+
+  <p>You are <strong><%= next_stop["count"]-referrals_count%></strong> referrals away from unlocking your next reward!</p>
+
 </div>
