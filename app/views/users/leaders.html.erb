@@ -1,0 +1,18 @@
+<div class="container">
+      <h1>Referrable Leaderboard</h1>
+        <table class="table table-striped table-bordered table-condensed">
+          <tbody>
+            <tr>
+             <th>User</th>
+             <th>Referrals</th>
+            </tr>
+            <% @users.sort_by{|u| u.referrals.count }.reverse.each do |u| %>
+          <tr>
+            <td><%= u.username %></td>
+            <td><%= u.referrals.count %></td>
+          </tr>
+            <% end %>
+          </tbody>
+        </table>
+        <%= button_to "Back to Referable", refer_a_friend_path, :method => "get" %>
+</div>

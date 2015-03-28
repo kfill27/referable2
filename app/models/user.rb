@@ -2,7 +2,7 @@ class User < ActiveRecord::Base
   belongs_to :referrer, class_name: "User", foreign_key: "referrer_id"
   has_many :referrals, class_name: "User", foreign_key: "referrer_id"
 
-  validates :email, uniqueness: true
+  validates :email, :username, uniqueness: true
   validates :referral_code, uniqueness: true
 
   before_create :create_referral_code
@@ -33,6 +33,11 @@ class User < ActiveRecord::Base
         "image" => ActionController::Base.helpers.asset_path("refer/blade-explain@2x.png")
     }
   ]
+
+  def admin?
+    self.role == 'admin'
+  end
+
   private
   def create_referral_code
   	#generate random hexadecimal referral code

@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   root 'users#new'
   match 'users/create' => 'users#create', via: [:get, :post] 
   match 'refer-a-friend' => 'users#refer', via: [:get, :post]
+  get '/leaders' => 'users#leaders'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

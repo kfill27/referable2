@@ -52,17 +52,21 @@ class UsersController < ApplicationController
 	end
 
 	def skip_to_refer
-    email = cookies[:h_email]
-    if email and !User.find_by_email(email).nil?
-      redirect_to '/refer-a-friend'
-    else
-      cookies.delete :h_email
-    end 
+		email = cookies[:h_email]
+		if email and !User.find_by_email(email).nil?
+		  redirect_to '/refer-a-friend'
+		else
+		  cookies.delete :h_email
+		end 
+	end
+
+	def leaders
+		@users = User.all
 	end
 
 	private
 	def user_params
-		params.require(:user).permit(:email)
+		params.require(:user).permit(:email, :username)
 	end
 
 end
